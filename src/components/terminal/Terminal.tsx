@@ -85,13 +85,7 @@ export default function Terminal() {
     }
 
     if (pending === "project" && selectedProject === "choose") {
-      if (value === "back") {
-        setPending(null);
-        setSelectedProject(null);
-        addOutput(["Back to the command menu. Type help to see commands."]);
-      } else {
-        chooseProject(value);
-      }
+      chooseProject(value);
       return;
     }
 
@@ -106,13 +100,7 @@ export default function Terminal() {
         addOutput(["No problem. Type 'projects' to explore another project."]);
         return;
       }
-      if (value === "back") {
-        setPending(null);
-        setSelectedProject(null);
-        addOutput(["Back to the command menu. Type 'help' to see commands."]);
-        return;
-      }
-      addOutput(["Please answer yes or no, or type back to choose another project."]);
+      addOutput(["Please answer yes or no."]);
       return;
     }
 
@@ -128,12 +116,7 @@ export default function Terminal() {
         addOutput(["No problem. What would you like to explore next?"]);
         return;
       }
-      if (value === "back") {
-        setPending(null);
-        addOutput(["Back to the command menu. Type 'help' to see commands."]);
-        return;
-      }
-      addOutput(["Please answer yes or no, or type back to return to the command menu."]);
+      addOutput(["Please answer yes or no."]);
       return;
     }
 
@@ -249,7 +232,6 @@ export default function Terminal() {
           <div className="terminal-options">
             <button type="button" onClick={() => handleOption("yes")}>yes ↗</button>
             <button type="button" onClick={() => handleOption("no")}>no</button>
-            <button type="button" onClick={() => handleOption("back")}>back</button>
           </div>
         )}
 

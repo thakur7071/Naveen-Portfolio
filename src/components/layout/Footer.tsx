@@ -12,7 +12,6 @@ export default function Footer() {
 
         <div className="footer-bottom">
           <span>© {new Date().getFullYear()} Naveen Singh. All rights reserved.</span>
-          <a href="#home">Back to top ↑</a>
         </div>
       </div>
     </footer>

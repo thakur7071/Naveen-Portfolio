@@ -20,10 +20,10 @@ export const aboutLines = [
 ];
 
 export const skillLines = [
-  "FRONTEND  ·  HTML5, CSS3, JavaScript, React, Next.js, Tailwind CSS",
-  "BACKEND   ·  Python, Django",
-  "DATABASE  ·  SQLite, MySQL",
-  "TOOLS     ·  Git, GitHub, VS Code",
+  "LANGUAGES  ·  C, Python, JavaScript",
+  "WEB & MOBILE DEVELOPMENT  ·  HTML5, CSS, Bootstrap, Tailwind CSS, GSAP, React, Django, Node.js, Express, React Native, Expo, REST API, MySQL, MongoDB, WordPress",
+  "DEVELOPER TOOLS  ·  Git, GitHub, Visual Studio Code",
+  "SOFT SKILLS  ·  Problem-solving, Teamwork, Communication",
 ];
 
 export const contactLines = [

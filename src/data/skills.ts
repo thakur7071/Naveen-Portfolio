@@ -1,20 +1,36 @@
+
 import type { Skill } from "@/types";
 
 export const skills: Skill[] = [
-  { name: "HTML5", category: "Frontend" },
-  { name: "CSS3", category: "Frontend" },
-  { name: "JavaScript", category: "Frontend" },
-  { name: "React", category: "Frontend" },
-  { name: "Next.js", category: "Frontend" },
-  { name: "Tailwind CSS", category: "Frontend" },
+  // Programming Languages
+  { name: "C", category: "Languages" },
+  { name: "Python", category: "Languages" },
+  { name: "JavaScript", category: "Languages" },
 
-  { name: "Python", category: "Backend" },
-  { name: "Django", category: "Backend" },
+  // Web & Mobile Development
+  { name: "HTML5", category: "Web & Mobile Development" },
+  { name: "CSS", category: "Web & Mobile Development" },
+  { name: "Bootstrap", category: "Web & Mobile Development" },
+  { name: "Tailwind CSS", category: "Web & Mobile Development" },
+  { name: "GSAP", category: "Web & Mobile Development" },
+  { name: "React", category: "Web & Mobile Development" },
+  { name: "Django", category: "Web & Mobile Development" },
+  { name: "Node.js", category: "Web & Mobile Development" },
+  { name: "Express", category: "Web & Mobile Development" },
+  { name: "React Native", category: "Web & Mobile Development" },
+  { name: "Expo", category: "Web & Mobile Development" },
+  { name: "REST API", category: "Web & Mobile Development" },
+  { name: "MySQL", category: "Web & Mobile Development" },
+  { name: "MongoDB", category: "Web & Mobile Development" },
+  { name: "WordPress", category: "Web & Mobile Development" },
 
-  { name: "SQLite", category: "Database" },
-  { name: "MySQL", category: "Database" },
+  // Developer Tools
+  { name: "Git", category: "Developer Tools" },
+  { name: "GitHub", category: "Developer Tools" },
+  { name: "Visual Studio Code", category: "Developer Tools" },
 
-  { name: "Git", category: "Tools" },
-  { name: "GitHub", category: "Tools" },
-  { name: "VS Code", category: "Tools" },
+  // Soft Skills
+  { name: "Problem-solving", category: "Soft Skills" },
+  { name: "Teamwork", category: "Soft Skills" },
+  { name: "Communication", category: "Soft Skills" },
 ];

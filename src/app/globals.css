@@ -1072,8 +1072,6 @@ textarea:focus-visible {
   color: #E5EDE7;
 }
 .interior-header { padding-bottom: 22px; border-bottom: 1px solid rgba(168,181,170,.12); }
-.back-terminal { color: #A8B5AA; font-size: 12px; text-decoration: none; }
-.back-terminal:hover { color: #8DD6A5; }
 .interior-content { width: min(1000px, 100%); margin: 64px auto 80px; }
 .interior-title { margin: 12px 0 28px; font-size: clamp(36px, 6vw, 58px); line-height: 1.05; letter-spacing: -.05em; }
 .interior-content > .section { padding: 20px 0; }
@@ -1137,3 +1135,4 @@ textarea:focus-visible {
   text-decoration: none;
 }
 .terminal-option-link:hover { background: rgba(40,122,69,.26); border-color: #55B879; }
+

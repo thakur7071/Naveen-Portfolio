@@ -14,7 +14,6 @@ export default function InteriorPage({
     <main className="interior-page">
       <header className="interior-header">
         <Link href="/" className="terminal-brand">NAVEEN<span>.DEV</span></Link>
-        <Link href="/" className="back-terminal">← Back to Terminal</Link>
       </header>
       <div className="interior-content">
         <p className="interior-eyebrow">{eyebrow}</p>

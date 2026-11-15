@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { projects } from "@/data/projects";
 import InteriorPage from "@/components/layout/InteriorPage";
@@ -36,7 +35,6 @@ export default function ProjectDetail({ slug }: { slug: string }) {
       <div className="project-detail-actions">
         {project.githubUrl ? <a className="detail-link" href={project.githubUrl} target="_blank" rel="noreferrer">View GitHub ↗</a> : <span className="detail-link muted-link">GitHub link not added yet</span>}
         {project.liveUrl ? <a className="detail-link" href={project.liveUrl} target="_blank" rel="noreferrer">Live Demo ↗</a> : <span className="detail-link muted-link">Live demo not added yet</span>}
-        <Link className="detail-link" href="/">Back to Terminal ←</Link>
       </div>
     </InteriorPage>
   );

@@ -1,7 +1,12 @@
 import { skills } from "@/data/skills";
 import SectionHeading from "@/components/ui/SectionHeading";
 
-const categories = ["Frontend", "Backend", "Database", "Tools"];
+const categories = [
+  "Languages",
+  "Web & Mobile Development",
+  "Developer Tools",
+  "Soft Skills",
+];
 
 export default function Skills() {
   return (
