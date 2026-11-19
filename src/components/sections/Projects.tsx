@@ -1,15 +1,9 @@
 import { projects } from "@/data/projects";
-import SectionHeading from "@/components/ui/SectionHeading";
 
 export default function Projects() {
   return (
     <section id="projects" className="section">
       <div className="container">
-        <SectionHeading
-          eyebrow="03 / SELECTED WORK"
-          title="Things I've built."
-          description="A selection of projects I've worked on and learned from."
-        />
 
         <div className="projects-grid">
           {projects.map((project) => (

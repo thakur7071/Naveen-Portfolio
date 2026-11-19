@@ -22,12 +22,12 @@ export default function Terminal() {
   const [pending, setPending] = useState<PendingAction>(null);
   const [selectedProject, setSelectedProject] = useState<string | null>(null);
   const [resumeAvailable, setResumeAvailable] = useState(false);
-  const outputRef = useRef<HTMLDivElement>(null);
+  const bodyRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    const output = outputRef.current;
-    if (output) output.scrollTop = output.scrollHeight;
+    const body = bodyRef.current;
+    if (body) body.scrollTop = body.scrollHeight;
   }, [lines, pending]);
 
   function addOutput(items: string[]) {
@@ -197,8 +197,8 @@ export default function Terminal() {
         <span className="terminal-label">INTERACTIVE TERMINAL</span>
       </div>
 
-      <div className="terminal-body" onClick={() => inputRef.current?.focus()}>
-        <div className="terminal-output" ref={outputRef} aria-live="polite">
+      <div className="terminal-body" ref={bodyRef} onClick={() => inputRef.current?.focus()}>
+        <div className="terminal-output" aria-live="polite">
           {lines.map((line, index) => (
             <div key={`${index}-${line.text}`} className="terminal-line">
               {line.type === "command" ? (
@@ -212,29 +212,6 @@ export default function Terminal() {
           ))}
         </div>
 
-        {resumeAvailable && (
-          <div className="terminal-options">
-            <a className="terminal-option-link" href="/resume.pdf" download>Download resume ↓</a>
-          </div>
-        )}
-
-        {showProjectChoices && (
-          <div className="terminal-options">
-            {projects.map((project) => (
-              <button key={project.slug} type="button" onClick={() => chooseProject(project.slug)}>
-                {project.number} · {project.title}
-              </button>
-            ))}
-          </div>
-        )}
-
-        {showYesNo && !showProjectChoices && (
-          <div className="terminal-options">
-            <button type="button" onClick={() => handleOption("yes")}>yes ↗</button>
-            <button type="button" onClick={() => handleOption("no")}>no</button>
-          </div>
-        )}
-
         <form onSubmit={handleSubmit} className="terminal-input-line">
           <span className="terminal-user">naveen@portfolio</span>
           <span className="terminal-path">:~$</span>
@@ -247,6 +224,31 @@ export default function Terminal() {
             aria-label="Terminal command"
           />
         </form>
+
+        <div className="terminal-controls">
+          {resumeAvailable && (
+            <div className="terminal-options">
+              <a className="terminal-option-link" href="/resume.pdf" download>Download resume ↓</a>
+            </div>
+          )}
+
+          {showProjectChoices && (
+            <div className="terminal-options">
+              {projects.map((project) => (
+                <button key={project.slug} type="button" onClick={() => chooseProject(project.slug)}>
+                  {project.number} · {project.title}
+                </button>
+              ))}
+            </div>
+          )}
+
+          {showYesNo && !showProjectChoices && (
+            <div className="terminal-options">
+              <button type="button" onClick={() => handleOption("yes")}>yes ↗</button>
+              <button type="button" onClick={() => handleOption("no")}>no</button>
+            </div>
+          )}
+        </div>
       </div>
 
       <div className="terminal-footer">

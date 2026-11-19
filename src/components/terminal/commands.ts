@@ -28,7 +28,7 @@ export const skillLines = [
 
 export const contactLines = [
   "I'm happy to connect about projects, ideas, and opportunities.",
-  "Email: your.email@example.com",
+  "Email: singhnaveen2370@gmail.com",
   "GitHub: github.com/your-username",
   "LinkedIn: linkedin.com/in/your-username",
 ];

@@ -16,7 +16,7 @@ export default function Hero() {
         >
           <StatusBadge />
 
-          <p className="hero-intro">HELLO, WORLD! I'M</p>
+          <p className="hero-intro">HELLO, WORLD! I&apos;M</p>
 
           <h1>
             Naveen
@@ -39,7 +39,7 @@ export default function Hero() {
             </a>
 
             <a href="#contact" className="button-secondary">
-              Let's Connect
+              Let&apos;s Connect
             </a>
           </div>
 

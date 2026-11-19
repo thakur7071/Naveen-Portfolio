@@ -1,15 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import type { FormEvent } from "react";
+import type { SubmitEvent } from "react";
 import emailjs from "@emailjs/browser";
-import SectionHeading from "@/components/ui/SectionHeading";
-
 export default function Contact() {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
-  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: SubmitEvent<HTMLFormElement>) {
     event.preventDefault();
 
     const form = event.currentTarget;
@@ -44,18 +42,13 @@ export default function Contact() {
   return (
     <section id="contact" className="section contact-section">
       <div className="container">
-        <SectionHeading
-          eyebrow="04 / GET IN TOUCH"
-          title="Let's build something together."
-          description="Have an idea, an opportunity, or just want to connect? I'd love to hear from you."
-        />
 
         <div className="contact-grid">
           <div className="contact-info">
-            <h3>Let's start a conversation.</h3>
+            <h3>Let&apos;s start a conversation.</h3>
 
             <p>
-              I'm always interested in discussing new projects, creative ideas,
+              I&apos;m always interested in discussing new projects, creative ideas,
               and opportunities to learn and grow.
             </p>
 
@@ -63,7 +56,7 @@ export default function Contact() {
               href="mailto:your.email@example.com"
               className="contact-email"
             >
-              your.email@example.com ↗
+              singhnaveen2370@gmail.com ↗
             </a>
 
             <div className="social-links">
@@ -86,26 +79,28 @@ export default function Contact() {
           </div>
 
           <form className="contact-form" onSubmit={handleSubmit}>
-            <div className="form-group">
-              <label htmlFor="name">Your Name</label>
-              <input
-                id="name"
-                name="from_name"
-                type="text"
-                placeholder="Enter your name"
-                required
-              />
-            </div>
+            <div className="form-row">
+              <div className="form-group">
+                <label htmlFor="name">Your Name</label>
+                <input
+                  id="name"
+                  name="from_name"
+                  type="text"
+                  placeholder="Enter your name"
+                  required
+                />
+              </div>
 
-            <div className="form-group">
-              <label htmlFor="email">Your Email</label>
-              <input
-                id="email"
-                name="from_email"
-                type="email"
-                placeholder="Enter your email"
-                required
-              />
+              <div className="form-group">
+                <label htmlFor="email">Your Email</label>
+                <input
+                  id="email"
+                  name="from_email"
+                  type="email"
+                  placeholder="Enter your email"
+                  required
+                />
+              </div>
             </div>
 
             <div className="form-group">

@@ -449,9 +449,30 @@ textarea:focus-visible {
 
 .about-grid {
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 65px;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: 32px;
   align-items: start;
+}
+
+.about-photo {
+  width: min(90%, 280px);
+  height: auto;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  object-position: top center;
+
+  border-radius: 12px;
+
+  /* Fix white fringe from bg removal */
+  filter: drop-shadow(0 0 1px rgba(0,0,0,0.8));
+
+  /* Green glow matching your --online & --highlight */
+  filter: drop-shadow(0 8px 32px rgba(40, 122, 69, 0.35))
+          drop-shadow(0 0 2px rgba(0,0,0,0.6));
+
+  /* Subtle green border glow */
+  outline: 1px solid rgba(72, 168, 106, 0.15);
+  outline-offset: 4px;
 }
 
 .about-text p {
@@ -463,13 +484,16 @@ textarea:focus-visible {
 
 .about-details {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-column: 1 / -1;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  width: 100%;
+  max-width: 640px;
   gap: 13px;
 }
 
 .detail-card {
-  min-height: 115px;
-  padding: 22px;
+  min-height: 80px;
+  padding: 14px 18px;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 8px;
@@ -488,7 +512,7 @@ textarea:focus-visible {
 }
 
 .detail-card h3 {
-  margin-top: 15px;
+  margin-top: 8px;
   font-size: 14px;
 }
 
@@ -534,6 +558,11 @@ textarea:focus-visible {
 }
 
 .skill-tag {
+  display: inline-flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
   padding: 10px 13px;
   background: #19271d;
   border: 1px solid rgba(72, 168, 106, 0.16);
@@ -541,6 +570,11 @@ textarea:focus-visible {
   color: #b9c9bd;
   font-size: 12px;
   transition: 0.2s;
+}
+
+.skill-tag-icon {
+  flex: none;
+  color: #6ba67b;
 }
 
 .skill-tag:hover {
@@ -668,8 +702,9 @@ textarea:focus-visible {
 
 .contact-grid {
   display: grid;
-  grid-template-columns: 0.8fr 1.2fr;
-  gap: 80px;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  align-items: start;
+  gap: 48px;
 }
 
 .contact-info h3 {
@@ -715,6 +750,12 @@ textarea:focus-visible {
 
 .form-group {
   margin-bottom: 20px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
 }
 
 .form-group label {
@@ -817,6 +858,11 @@ textarea:focus-visible {
     gap: 35px;
   }
 
+  .about-details {
+    grid-column: auto;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .contact-grid {
     grid-template-columns: 1fr;
     gap: 40px;
@@ -891,6 +937,11 @@ textarea:focus-visible {
 
   .contact-form {
     padding: 20px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
   }
 
   .terminal-body {
@@ -1011,21 +1062,26 @@ textarea:focus-visible {
 .terminal-dots .green { background: #4ADE80; }
 .terminal-title { color: #A8B5AA; font-size: 11px; }
 .terminal-label { margin-left: auto; color: #607268; font-size: 9px; letter-spacing: .14em; }
-.terminal-body { height: 390px; display: flex; flex-direction: column; overflow: hidden; padding: 19px 21px 16px; }
-.terminal-output {
-  flex: 0 1 auto;
-  height: auto;
-  max-height: none;
-  min-height: 0;
-  overflow-y: auto;
+.terminal-body {
+  height: 390px;
+  display: flex;
+  flex-direction: column;
   overflow-x: hidden;
+  overflow-y: auto;
+  padding: 19px 21px 16px;
   overscroll-behavior: contain;
   scrollbar-width: none;
+}
+.terminal-body::-webkit-scrollbar { display: none; }
+.terminal-output {
+  flex: 0 0 auto;
+  height: auto;
+  max-height: none;
   color: #B7C7BA;
   font: 12px/1.85 var(--font-geist-mono), "Courier New", monospace;
 }
-.terminal-output::-webkit-scrollbar { display: none; }
 .terminal-line { min-height: 22px; overflow-wrap: anywhere; }
+.terminal-controls { flex: 0 0 auto; }
 .command-line { display: flex; gap: 8px; color: #E5EDE7; }
 .terminal-user { color: #72C58E; white-space: nowrap; }
 .terminal-path { color: #8DAB96; white-space: nowrap; }

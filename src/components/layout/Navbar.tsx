@@ -33,7 +33,7 @@ export default function Navbar() {
         </nav>
 
         <a href="#contact" className="nav-cta">
-          Let's Talk <span>↗</span>
+          Let&apos;s Talk <span>↗</span>
         </a>
 
         <button
