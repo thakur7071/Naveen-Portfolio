@@ -67,10 +67,10 @@ export default function Skills() {
         
 
         <div className="skills-grid">
-          {categories.map((category) => (
+          {categories.map((category, index) => (
             <div className="skill-card" key={category}>
               <div className="skill-card-heading">
-                <span className="skill-number">/</span>
+                <span className="skill-number">{String(index + 1).padStart(2, "0")}</span>
                 <h3>{category}</h3>
               </div>
 
