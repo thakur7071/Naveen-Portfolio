@@ -1,6 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { projects } from "@/data/projects";
 import { skills } from "@/data/skills";
 import Terminal from "@/components/terminal/Terminal";
@@ -14,9 +17,16 @@ const skillCategories = [
   "Soft Skills",
 ];
 
+const introRoles = [
+  "Full-Stack Developer",
+  "UI Engineer",
+  "Problem Solver",
+];
+
 export default function HomePage({ skipCurtain = false }: { skipCurtain?: boolean }) {
   const [entered, setEntered] = useState(skipCurtain);
   const [curtainGone, setCurtainGone] = useState(skipCurtain);
+  const [roleText, setRoleText] = useState(introRoles[0]);
 
   useEffect(() => {
     if (skipCurtain) {
@@ -29,19 +39,59 @@ export default function HomePage({ skipCurtain = false }: { skipCurtain?: boolea
     }
 
     if (!entered) return;
-    const timer = window.setTimeout(() => setCurtainGone(true), 1150);
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    const timer = window.setTimeout(
+      () => setCurtainGone(true),
+      prefersReducedMotion ? 0 : 1150,
+    );
     return () => window.clearTimeout(timer);
   }, [entered, skipCurtain]);
 
+  useEffect(() => {
+    if (skipCurtain) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    let roleIndex = 0;
+    let characterIndex = introRoles[0].length;
+    let deleting = true;
+    let timer: number;
+
+    function tick() {
+      const currentRole = introRoles[roleIndex];
+      characterIndex += deleting ? -1 : 1;
+      setRoleText(currentRole.slice(0, characterIndex));
+
+      let delay = deleting ? 35 : 75;
+      if (!deleting && characterIndex === currentRole.length) {
+        deleting = true;
+        delay = 1400;
+      } else if (deleting && characterIndex === 0) {
+        deleting = false;
+        roleIndex = (roleIndex + 1) % introRoles.length;
+        delay = 300;
+      }
+
+      timer = window.setTimeout(tick, delay);
+    }
+
+    timer = window.setTimeout(tick, 1400);
+    return () => window.clearTimeout(timer);
+  }, [skipCurtain]);
+
+  useEffect(() => {
+    if (curtainGone) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [curtainGone]);
+
   function enterPortfolio() {
     setEntered(true);
-  }
-
-  function handleKeyDown(event: React.KeyboardEvent<HTMLDivElement>) {
-    if (event.key === "Enter" || event.key === " ") {
-      event.preventDefault();
-      enterPortfolio();
-    }
   }
 
   return (
@@ -51,34 +101,72 @@ export default function HomePage({ skipCurtain = false }: { skipCurtain?: boolea
           id="curtain-stage"
           className={entered ? "open" : ""}
           aria-hidden={entered}
+          onPointerMove={(event) => {
+            const bounds = event.currentTarget.getBoundingClientRect();
+            event.currentTarget.style.setProperty(
+              "--mx",
+              `${event.clientX - bounds.left}px`,
+            );
+            event.currentTarget.style.setProperty(
+              "--my",
+              `${event.clientY - bounds.top}px`,
+            );
+          }}
         >
-          <div className="curtain curtain-left" />
-          <div className="curtain curtain-right" />
-          <div
-            id="enter-btn"
-            role="button"
-            tabIndex={0}
-            aria-label="Enter portfolio"
-            onClick={enterPortfolio}
-            onKeyDown={handleKeyDown}
-          >
-            <div className="enter-label">welcome to my portfolio</div>
-            <div className="enter-name">
-              Naveen
-              <br />
-              <em>Singh</em>
-            </div>
-            <div className="arrow-ring">
-              <svg className="arrow-icon" viewBox="0 0 24 24" aria-hidden="true">
-                <polyline points="6 9 12 15 18 9" />
+          <div className="intro-vline" aria-hidden="true" />
+          <div className="intro-hero">
+            <div className="intro-hello">WELCOME TO MY PORTFOLIO</div>
+            <h1 className="intro-name">
+              Naveen <span>Singh</span>
+            </h1>
+            <p className="intro-role" aria-live="off">
+              <span>{roleText}</span>
+              <i aria-hidden="true" />
+            </p>
+            <p className="intro-tag">
+              I build fast, clean web apps that solve real problems.
+            </p>
+            <button
+              className="intro-enter"
+              type="button"
+              aria-label="Enter portfolio"
+              onClick={enterPortfolio}
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M9 6l6 6-6 6" />
               </svg>
-            </div>
-            <div className="enter-label">click to enter</div>
+            </button>
+            <span className="intro-cta">CLICK TO ENTER</span>
           </div>
+          <nav className="intro-social" aria-label="Social links">
+            <a
+              href="https://github.com/thakur7071"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="GitHub"
+              title="GitHub"
+            >
+              <FontAwesomeIcon icon={faGithub} aria-hidden="true" />
+            </a>
+            <a
+              href="mailto:singhnaveen2370@gmail.com"
+              aria-label="Email"
+              title="Email"
+            >
+              <FontAwesomeIcon icon={faEnvelope} aria-hidden="true" />
+            </a>
+            <a href="#" aria-label="LinkedIn" title="LinkedIn">
+              <FontAwesomeIcon icon={faLinkedin} aria-hidden="true" />
+            </a>
+          </nav>
         </div>
       )}
 
-      <div id="site" className={entered ? "visible" : ""}>
+      <div
+        id="site"
+        className={entered ? "visible" : ""}
+        aria-hidden={!entered}
+      >
         <SiteNavbar />
 
         <main>
